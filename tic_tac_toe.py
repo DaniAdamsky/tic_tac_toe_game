@@ -65,7 +65,6 @@ def switch_player(current):
         return '✖️'
 
 #bonus function
-
 def score_board(board, player, ties, player_x_score, player_o_score):
     if is_tie(board):
         ties += 1
@@ -74,16 +73,27 @@ def score_board(board, player, ties, player_x_score, player_o_score):
             player_x_score += 1
         elif player == '⭕':
             player_o_score += 1
-    return f"player ✖️ score is: {player_x_score}\nplayer ⭕ score is:{player_o_score}\ntotal ties are: {ties}"
+    print(f"player ✖️ score is: {player_x_score}\nplayer ⭕ score is:{player_o_score}\ntotal ties are: {ties}")
+    return ties , player_x_score, player_o_score
 
-def play_game():
+#Bonus function - computer player
+def cpu_player():
+    """Cpu player moves"""
+    cpu_move = random.randint(0, 9)
+    return cpu_move
+    pass
+def main_menu():
+    """menu choice for who to play against
+    1 == against cpu
+    2 == 2 player"""
+    pass
+
+def play_game(tie_amount=0,x_score=0,o_score=0):
     """plays through the game board"""
-    player_x_score = 0
-    player_o_score = 0
-    ties = 0
     board = create_board()
     current_player = random.choice(['✖️', '⭕'])
     print(f"Welcome to Tic Tac Toe! ⭕✖️\n(to restart mid-game, input -999 as a move)\n")
+    #if menu_choice == 1:
     while True:
         print_board(board)
         print(f"Current player is - player {current_player}")
@@ -98,12 +108,13 @@ def play_game():
             break
         else:
             current_player = switch_player(current_player)
-    result = score_board(board, current_player, ties, player_x_score, player_o_score)
-    print (result)
+    tie_amount , x_score, o_score = score_board(board, current_player, tie_amount, x_score, o_score)
+    #result = score_board(board, current_player, tie_amount, x_score, o_score)
+    #print (result)
     play_again = input("Do you want to play again? (Y/N): ")
     if play_again == 'Y':
         print("restarting game...")
-        play_game()
+        play_game(tie_amount,x_score,o_score)
 
 play_game()
 
