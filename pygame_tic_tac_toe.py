@@ -26,18 +26,15 @@ font_medium = pygame.font.SysFont("segoeui", 36, bold=True)
 font_small = pygame.font.SysFont("segoeui", 24)
 font_tiny = pygame.font.SysFont("segoeui", 18)
 
-# -------------------- ORIGINAL LOGIC (matching terminal version) --------------------
+# -------------------- ORIGINAL TERMINAL --------------------
 
 def create_board():
-    """returns a clear board list with 1-9"""
     return [str(i + 1) for i in range(9)]
 
 def make_move(board, position, symbol):
-    """makes a move on the board for the chosen player"""
     board[int(position) - 1] = symbol
 
 def check_winner(board, symbol):
-    """returns winning combo if a player won, else None"""
     combos = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -49,26 +46,22 @@ def check_winner(board, symbol):
     return None
 
 def is_tie(board):
-    """return true if there are no more valid moves"""
     for square in board:
         if square != 'X' and square != 'O':
             return False
     return True
 
 def switch_player(current):
-    """switches the current player from one to the other"""
     if current == 'X':
         return 'O'
     else:
         return 'X'
 
 def cpu_move(board):
-    """CPU player picks a random available move (matches original logic)"""
     available = [square for square in board if square not in ['X', 'O']]
     return random.choice(available)
 
 def score_board(current_player, is_tie_result, ties, x_score, o_score):
-    """mirrors original score_board logic"""
     if is_tie_result:
         ties += 1
     elif current_player == 'X':
@@ -124,7 +117,7 @@ def draw_button(label, rect, hovered, override_color=None, override_hover=None):
     screen.blit(text, text.get_rect(center=rect.center))
 
 def draw_restart_hint():
-    """shows the mid-game restart hint like the terminal version"""
+    """shows the mid-game restart hint"""
     pygame.draw.rect(screen, (20, 20, 35), (0, WIDTH + 85, WIDTH, 25))
     hint = font_tiny.render("Press  [R]  to restart mid-game", True, (100, 100, 130))
     screen.blit(hint, hint.get_rect(center=(WIDTH // 2, WIDTH + 97)))
