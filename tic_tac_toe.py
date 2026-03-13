@@ -16,7 +16,8 @@ def main_menu():
     elif menu_choice == 2:
         return menu_choice
     else:
-        return f"invalid choice {main_menu()}"
+        print("invalid choice, please try again")
+        return main_menu()
 
 
 menu_choice = main_menu()
