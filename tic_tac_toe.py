@@ -125,7 +125,7 @@ def cpu_move(board) -> str:
 def play_game(tie_amount=0, x_score=0, o_score=0):
     """plays through the game board"""
     board = create_board()
-    current_player = random.choice(['✖️', '⭕'])
+    current_player = player1
     while True:
         print_board(board)
         print(f"Current player is - player {current_player}")
