@@ -10,11 +10,14 @@ def main_menu():
     2 == 2 player"""
     # Medium bonus: player menu
     print(f"Welcome to Tic Tac Toe! ⭕✖️\nplease choose menu option:\n\n1 -- play against cpu\n2 -- 2 players\n")
-    menu_choice = int(input("please input menu choice: "))
-    if menu_choice == 1:
-        return menu_choice
-    elif menu_choice == 2:
-        return menu_choice
+    menu_choice = input("please input menu choice: ")
+    if menu_choice == "1":
+        return int(menu_choice)
+    elif menu_choice == "2":
+        return int(menu_choice)
+    elif not menu_choice.isdigit():
+        print("Please enter a valid menu choice")
+        return main_menu()
     else:
         print("invalid choice, please try again")
         return main_menu()
@@ -42,12 +45,12 @@ def get_move(current_player, board):
     function checks whether the move is valid"""
     while True:
         if menu_choice == 1 and player2 == current_player:
+            """checks if current player is the cpu"""
             # cpu move
             player_move = cpu_move()
         else:
             # player move
-            player_move = input(
-                f"Player {current_player}, Please enter your move:\n(to restart mid-game, input -999 as a move)\n")
+            player_move = input(f"Player {current_player}, Please enter your move:\n(to restart mid-game, input -999 as a move)\n")
         if player_move == "-999":
             # Easy bonus: add a restart option mid-game
             print("restarting game...")
