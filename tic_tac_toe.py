@@ -55,7 +55,6 @@ def get_move(current_player, board):
             # Easy bonus: add a restart option mid-game
             print("restarting game...")
             play_game()
-            break
         elif not player_move.isdigit():
             print("Please enter a valid move")
         elif int(player_move) not in range(1, 10):
